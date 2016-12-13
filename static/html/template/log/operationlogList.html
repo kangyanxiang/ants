@@ -1,0 +1,66 @@
+<div class="nav-map-wrap">
+    <div class="nav-map">爱WiFi运营管理平台<span class="flag">></span>日志管理<span class="flag">></span>操作日志</div>
+</div>
+<div class="content-fixed">
+    <div class="awifi-padding-left20">
+        <div class="awifi-form-sheet">
+            <label class="form-item-title">起止时间：</label>
+            <div class="form-item-input awifi-Col-1 awifi-margin-right30">
+                <input class="input-control" placeholder="请输入起始日期" id="startDate" data-ng-model="startDate" readonly="readonly">
+            </div>
+            <label class="form-item-title">账号：</label>
+            <div class="form-item-input awifi-Col-2 awifi-margin-right30">
+                <input class="input-control" placeholder="请输入账号名称" data-ng-model="userName">
+            </div>
+            <label class="form-item-title">关键字：</label>
+            <div class="form-item-input awifi-Col-2 awifi-margin-right30">
+                <input class="input-control" placeholder="请输入模块名称关键字" data-ng-model="keywords">
+            </div>
+            <div class="awifi-left awifi-padding-left" permission="log_manager_exceptionlog_search">
+                <button class="form-primary" data-ng-click="list()" >
+                    <span>查询</span>
+                </button>
+            </div>
+        </div>
+        <div class="listtitle">
+            <span class="list6">&emsp;序号</span>
+            <span class="list16">&nbsp;账号</span>
+            <span class="list20">&nbsp;模块名称</span>
+            <span class="list40">&nbsp;日志详情</span>
+            <span class="list12">&nbsp;记录时间</span>
+            <span class="oper6">&nbsp;操作</span>
+        </div>
+    </div>
+</div>
+<div class="content-one">
+    <div class="datacontent" IE="8">
+        <div class="listcontent" data-ng-repeat="item in operationlogs">
+            <span class="list6">&emsp;{{ begin+$index+1 }}</span>
+            <span class="list16 substring" title="{{ item.userName }}">&nbsp;{{ item.userName }}</span>
+            <span class="list20 substring" title="{{ item.moduleName }}">&nbsp;{{ item.moduleName }}</span>
+            <span class="list40 substring" title="{{ item.content }}">&nbsp;{{ item.content }}</span>
+            <span class="list12">{{ item.createDate |date:"yyyy-MM-dd hh:mm:ss"}}</span>
+            <span class="oper6">
+                <a class="view" title="详情" data-ng-click="show(item.id)" permission="log_manager_exceptionlog_info"></a>
+            </span>
+        </div>
+        <div data-ng-if="operationlogs.length==0" class="no-records">查询完成，没有找到相应的数据</div>
+    </div>
+</div>
+<div class="footer-fixed">
+    <div class="right_footer" data-ng-show="showPageBar">
+        <div class="right_footer_page">
+        </div>
+        <div class="page_num">
+            <ul>
+                <li>每页显示</li>
+                <li><input type="button" value="15" class="show_page" /> </li>
+                <li><input type="button" value="30" class="show_page" /></li>
+                <li><input type="button" value="50" class="show_page" /></li>
+                <li>行</li>
+            </ul>
+        </div>
+        <div class="nothing"></div>
+    </div>
+</div>
+    

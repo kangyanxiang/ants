@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<b:beans 
+ xmlns="http://www.springframework.org/schema/security"
+ xmlns:b="http://www.springframework.org/schema/beans" 
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security.xsd">
+    
+	<http pattern="/css/**" security="none" />
+    <http pattern="/js/**" security="none" />
+	<http pattern="/images/**" security="none" />
+	<http pattern="/html/error/**" security="none" />
+    <http pattern="/favicon.ico" security="none" />
+	
+	<http auto-config="false" use-expressions="true" entry-point-ref="loginEntryPoint">
+	
+        <intercept-url pattern="/auth/login" access="permitAll"/><!-- 登录页面 -->
+        <intercept-url pattern="/auth/validationcode" access="permitAll"/><!-- 登录页面 验证验证码 -->
+        <intercept-url pattern="/user/generateauthcode" access="permitAll"/><!-- 登录页面 生成验证码 -->
+        <intercept-url pattern="/user/forgetpwdpage" access="permitAll"/><!-- 登录页面 忘记密码 -->
+        <intercept-url pattern="/authcode/**" access="permitAll"/><!-- 登录页面 忘记密码 -->
+        <intercept-url pattern="/login_check" access="permitAll"/><!-- 登录页面 登录地址 -->
+        <intercept-url pattern="/app/encryption" access="permitAll"/><!-- 参数加密 接口 -->
+        <intercept-url pattern="/app/getinformation" access="permitAll"/><!-- 获取详细信息 接口 -->
+        <intercept-url pattern="/api/**" access="permitAll"/><!-- api 接口 -->
+        <intercept-url pattern="/eapi/**" access="permitAll"/><!-- api 接口（外部、第三方） -->
+        <intercept-url pattern="/pub/**" access="permitAll"/><!--内部接口  -->
+
+        <intercept-url pattern="/**" access="hasAnyRole('ROLE_SUPER_ADMIN','ROLE_D_PROVINCE','ROLE_D_CITY','ROLE_D_AREA','ROLE_GROUP_ADMIN','ROLE_CUSTOMER_ADMIN')"/>
+
+        <access-denied-handler error-page="/auth/denied" /><!-- 访问拒绝 -->
+        
+        <logout success-handler-ref="customLogoutSuccessHandler"
+                invalidate-session="true" 
+                delete-cookies="JSESSIONID" />
+        
+        <custom-filter ref="usernamePasswordAuthenticationFilter" position="FORM_LOGIN_FILTER"/>
+        
+        <csrf disabled="true"/><!-- 取消 CSR拦截 -->
+        
+        <headers defaults-disabled="true"><!-- 防止 frame because it set 'X-Frame-Options' to 'DENY'. -->
+        	<cache-control />
+        </headers>
+    </http>
+    
+    <!-- 注销 -->
+    <b:bean id="customLogoutSuccessHandler" class="com.awifi.toe.auth.security.CustomLogoutSuccessHandler"> 
+      <b:property name="defaultTargetUrl" value="/auth/login" />
+    </b:bean>
+    
+    <b:bean id="loginEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+           <b:constructor-arg value="/auth/login" /><!-- 默认登录页的url -->
+    </b:bean>
+    
+    <b:bean id="usernamePasswordAuthenticationFilter" class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+      <b:property name="authenticationManager" ref="authenticationManager"/>
+      <b:property name="usernameParameter"     value="username"/><!-- 指定request中包含的用户名对应的参数名 -->
+      <b:property name="passwordParameter"     value="password"/><!-- 指定request中包含的密码对应的参数名 -->
+      <b:property name="filterProcessesUrl"    value="/login_check"/><!-- 指定登录的提交地址 -->
+      <b:property name="authenticationSuccessHandler">
+             <b:bean class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler"><!-- 自定义登录成功后的处理handler -->
+                 <b:property name="defaultTargetUrl" value="/" /><!-- 登录成功后的默认url -->
+             </b:bean>
+         </b:property>
+         <b:property name="authenticationFailureHandler">
+             <b:bean
+                 class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+                 <b:property name="defaultFailureUrl" value="/auth/login?error=true" /><!-- 登录失败后的默认Url -->
+             </b:bean>
+         </b:property>
+    </b:bean>
+    
+    <!-- 指定一个自定义的authentication-manager :customUserDetailsService -->  
+    <authentication-manager alias="authenticationManager">  
+        <authentication-provider user-service-ref="customUserDetailsService">  
+                <password-encoder ref="passwordEncoder"/>  
+        </authentication-provider>
+    </authentication-manager>
+    
+    <!-- 对密码进行MD5编码 -->  
+    <b:bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder"/>
+   
+</b:beans>

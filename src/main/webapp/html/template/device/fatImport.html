@@ -1,0 +1,90 @@
+<style>
+    .right_below_dsp {
+        padding: 25px 20px;
+    }
+    .stepWrap {
+        clear: both;
+        overflow: hidden;
+        margin: 20px 0;
+        padding-left: 90px;
+    }
+    .stepTitle {
+        float: left;
+        width: 90px;
+        font-size: 14px;
+        margin-left: -90px;
+        color: #2a917c;
+    }
+    .stepProgress ul {
+        overflow: hidden;
+        margin-bottom: 15px;
+    }
+    .stepProgress li {
+        float: left;
+    }
+    .progressNumber {
+        width: 30%;
+    }
+    .progressResult {
+        width: 70%;
+    }
+    .stepTips {
+        color: #f0ad4e;
+        font-size: 12px;
+        padding-left: 10px;
+    }
+    .fs14 {
+        font-size: 14px;
+    }
+    .stepFile {
+        color: #1C967E;
+    }
+    .stepComplete { }
+    .stepCompleteOK {
+        color: #1C967E;
+    }
+    .stepWrap button {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+
+    .substep {
+        width: 100%;
+        height: 32px;
+        line-height: 32px;
+        text-align: center;
+        overflow: hidden;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+    }
+    .substep ul {
+        float: left;
+        position: relative;
+        left: 50%;
+    }
+    .substep li {
+        position: relative;
+        right: 50%;
+        font-size: 14px;
+        float: left;
+        padding-right: 14px;
+        color: #fff;
+        background: #686868 url("/images/arrow-slice-left.png") no-repeat right 0;
+    }
+    .substep li span {
+        display: block;
+        background: #686868 url("/images/arrow-slice-right.png") no-repeat left 0;
+        padding-right: 20px;
+        padding-left: 34px;
+    }
+    .substep .subComplete, .substep .subComplete span {
+        background-color: #1C967E;
+    }
+    .stepHide {
+        display: none;
+    }
+    #uploadXlsBtn:disabled {
+        background-color: #686868;
+    }
+</style><div class="right_below_dsp"><div class="substep"><ul><li id="substep1" class="subComplete" style="padding: 0 34px 0 20px;">上传文件</li><li id="substep2"><span>校验文件</span></li><li id="substep3"><span>执行文件</span></li><li id="substep4" style="background-image:none;"><span style="padding-right:10px;">导入完成</span></li></ul></div><div class="stepWrap"><div class="stepTitle">上传文件：</div><div class="stepBody"><form name="fileForm"><div class="awifi-form-sheet"><label class="form-item-title">胖AP类型：</label><div class="form-item-select awifi-Col-5 awifi-margin-right" style="width:84%"><select id="entityType" name="entityType" data-ng-model="entityType" style="float:left;width:100px;"><option value="">请选择</option><option value="31">FAT_AP</option><option value="32">GPON</option><option value="33">GPON_W</option><option value="34">EPON</option><option value="35">EPON_W</option><option value="36">二合一</option><option value="37">三合一</option></select><div style="float:left;width:68%;margin-left:10px;line-height:36px;font-size:14px;"><a id="downXls" href="/download/template?fileName=awifi_fatap.xls">下载模板</a> <span class="stepTips">胖AP入库信息按规范填写在excel文件</span></div></div></div><div class="awifi-form-sheet"><label class="form-item-title">选择文件：</label><div class="form-item-select awifi-Col-5 awifi-margin-right"><input type="file" data-ngf-select="" data-ng-model="xlsFile" name="file" accept="xls/*" reqfuired=""></div></div><div style="width:99%;text-align:center;margin-top:20px;margin-bottom:20px;"><button id="uploadXlsBtn" data-ng-disabled="!fileForm.$valid" data-ng-click="uploadXls(xlsFile)">上传</button> <button data-ng-click="closeThisDialog()">返回</button></div><div data-ng-show="xlsFile.result" class="upload_message">{{ xlsFile.result.message }}</div><div id="validate_messsage" class="upload_message" style="display:none;"></div></form></div></div><div id="stepWrap2" class="stepWrap stepHide"><div class="stepTitle">校验文件：</div><div class="stepBody fs14"><div id="stepBody2" class="stepFile">Excel文件数据格式正确</div></div></div><div id="stepWrap3" class="stepWrap stepHide"><div class="stepTitle">执行文件：</div><div id="stepBody3" class="stepBody stepProgress fs14"></div></div><div id="stepWrap4" class="stepWrap stepHide"><div class="stepTitle">导入完成：</div><div class="stepBody fs14"><div class="stepComplete stepCompleteOK">安成批量导入</div></div></div></div>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=UTF-8>
+<title>Jumping...</title>
+<script type=text/javascript
+	src=../../../js/lib/jquery/jquery-1.11.3.min.js></script>
+<script type=text/javascript src=../../../js/lib/jquery/jquery-ui.min.js></script>
+</head>
+<script type=text/javascript>
+var timestamp;
+var token;
+function skip(){
+	$.ajax({
+        type: "GET",
+        url: "/template/add",
+        data: {},
+        dataType: "json",
+        success: function(data){
+             if(data.result =="OK"){
+            	 timestamp = data.timestamp;
+            	 token = data.token;
+            	 window.location="http://127.0.0.1:82/template/adminAddPage?timestamp="+timestamp+"&token="+token;
+             }else{
+            	 alert("跳转失败");
+             }            
+        }
+    });
+	
+}
+
+</script>
+<body onload=skip()></body>
+</html>

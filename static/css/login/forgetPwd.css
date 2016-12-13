@@ -1,0 +1,128 @@
+html, body, div, ul, ol, p, h1, h2 {
+    margin: 0;
+    padding: 0;
+    font: 12px/1.2 'Microsoft Yahei', Tahoma, Helvetica, Arial, '\5b8b\4f53', sans-serif;
+}
+ul, ol {
+    list-style: none;
+}
+body {
+    background-color: #fff;
+    font-size: 14px;
+    color: #6A6A6A;
+    padding-bottom: 69px;
+}
+h1, h2 {
+    font-size: 18px;
+    padding: 29px 0 0 0;
+}
+input:focus {
+    outline: none;
+}
+
+.top {
+    width: 100%;
+    height: 90px;
+    overflow: hidden;
+    background-color: #fbfbfb;
+    border-bottom: 1px solid #f3f3f3;
+}
+.top .content {
+    width: 900px;
+    margin: 0 auto;
+}
+.top .logo {
+    float: left;
+    width: 165px;
+    height: 52px;
+    margin-top: 20px;
+}
+.top .logo img {
+    width: 100%;
+}
+.top .title {
+    float: left;
+    height: 46px;
+    margin: 25px 0 0 20px;
+    padding-left: 20px;
+    line-height: 46px;
+    font-size: 24px;
+    border-left: 1px solid #ddd;
+}
+.top .backLogin {
+    float: right;
+    margin-top: 38px;
+    text-decoration:none;
+    outline:none;
+    color: #333;
+    font-size: 14px;
+}
+.middle {
+    width: 100%;
+    overflow: hidden;
+}
+.middle .content {
+    width: 700px;
+    margin: 80px auto 0 auto;
+}
+.middle .process {
+    width: 100%;
+    overflow: hidden;
+}
+.middle .process .title {
+    width: 100%;
+    height: 50px;
+}
+.middle .process .title img{
+    width: 100%;
+}
+.middle .process .formContent {
+    width: 520px;
+    margin: 60px auto 0 auto;
+}
+.middle .process .formContent input {
+    width: 498px;
+    overflow: hidden;
+    border: 1px solid #eee;
+    height: 38px;
+    margin-bottom: 20px;
+    padding: 5px 5px 5px 15px;
+}
+.middle .process .formContent button {
+    width: 520px;
+    height: 50px;
+    background-color: #4A90E2;
+    line-height: 50px;
+    font-size: 20px;
+    font-weight: 700;
+    border: 0 none;
+    cursor: pointer;
+    color: #fff;
+}
+.middle .process .formContent button:disabled {
+    background-color: #686868;
+}
+.middle .process .formContent label {
+    display: block;
+    text-align: center;
+    color: red;
+    font-size: 14px;
+    padding: 10px 0;
+    line-height: 24px;
+    word-break: break-all;
+    word-break: break-word;
+}
+.middle .process .formContent .basicInfo {
+    width: 100%;
+    overflow: hidden;
+}
+.middle .process .formContent .basicInfo .title {
+    float: left;
+    width: 70px;
+    font-size: 14px;
+}
+.middle .process .formContent .basicInfo .value {
+    float: left;
+    width: 70%;
+    font-size: 14px;
+}

@@ -1,0 +1,58 @@
+<div class="nav-map-wrap">
+    <div class="nav-map">爱WiFi运营管理平台<span class="flag">></span>账号管理<span class="flag">></span>管理员账号<span class="flag">></span>创建管理员账号</div>
+</div>
+<div class="content">
+    <div class="account-add-body awifi-free-width">
+        <div class="awifi-form-sheet">
+            <label class="form-item-title awifi-Col-3">账号：</label>
+            <div class="form-item-input awifi-Col-6">
+                <input type="text" class="input-control inputw490" placeholder="请输入账号" id="userName" data-ng-model="account.userName">
+            </div>
+            <label class="form-item-title-red awifi-margin-right">*</label>
+            <label class="form-item-title">1-50位字母、数字、下划线、连接符</label>
+        </div>
+        <div class="awifi-form-sheet">
+            <label class="form-item-title awifi-Col-3">部门：</label>
+            <div class="form-item-input awifi-Col-6 awifi-margin-right">
+                <input type="text" class="input-control inputw490" placeholder="请输入部门" id="deptName" data-ng-model="account.deptName">
+            </div>
+            <label class="form-item-title">1-50位任意字符</label>
+        </div>
+        <div class="awifi-form-sheet">
+            <label class="form-item-title awifi-Col-3">姓名：</label>
+            <div class="form-item-input awifi-Col-6">
+                <input type="text" class="input-control inputw490" placeholder="请输入姓名" id="contactPerson" data-ng-model="account.contactPerson">
+            </div>
+            <label class="form-item-title-red awifi-margin-right">*</label>
+            <label class="form-item-title">1-50位任意字符</label>
+        </div>
+        <div class="awifi-form-sheet">
+            <label class="form-item-title awifi-Col-3">联系电话：</label>
+            <div class="form-item-input awifi-Col-6">
+                <input type="text" class="input-control inputw490" placeholder="请输入联系电话" id="contactWay" data-ng-model="account.contactWay">
+            </div>
+            <label class="form-item-title-red awifi-margin-right">*</label>
+            <label class="form-item-title">1-50位任意字符</label>
+        </div>
+        <div class="awifi-form-sheet">
+            <label class="form-item-title awifi-Col-3">备注：</label>
+            <div class="form-item-textarea awifi-Col-6">
+                <textarea id="remark" rows="6" placeholder="请输入备注" class="textareaw490" maxlength="100" data-ng-model="account.remark"></textarea>
+            </div>
+            <label class="form-item-title">1-100位任意字符</label>
+        </div>
+        <div class="awifi-form-sheet">
+            <label class="form-item-title awifi-Col-3">&nbsp;</label>
+            <div class="awifi-left awifi-padding-left">
+                <button id="adminAdd" class="form-primary awifi-left" type="button" data-ng-click="adminAdd()">
+                    <span>&nbsp;保&emsp;存&nbsp;</span>
+                </button>
+            </div>
+            <div class="awifi-left awifi-padding-left awifi-padding-top">
+                <a href="#/account/adminList" class="btn back-form-primary">
+                    <span>&nbsp;返&emsp;回&nbsp;</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
